@@ -5,7 +5,7 @@ import logging
 if sys.platform != "win32":
     import fcntl
 
-from aw_core.dirs import get_cache_dir
+from aa_core.dirs import get_cache_dir
 
 logger = logging.getLogger(__name__)
 

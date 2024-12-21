@@ -18,7 +18,7 @@ from typing import (
 
 from typing_extensions import TypeGuard
 
-import aw_client
+import aa_client
 
 from .classes import get_classes
 
@@ -290,8 +290,8 @@ def fullDesktopQuery(
 
 def test_fullDesktopQuery():
     params = DesktopQueryParams(
-        bid_window="aw-watcher-window_",
-        bid_afk="aw-watcher-afk_",
+        bid_window="aa-watcher-window_",
+        bid_afk="aa-watcher-afk_",
     )
     now = datetime.now(tz=timezone.utc)
     start = now - timedelta(days=7)
@@ -299,7 +299,7 @@ def test_fullDesktopQuery():
     timeperiods = [(start, end)]
     query = fullDesktopQuery(params)
 
-    awc = aw_client.ActivityWatchClient("test")
+    awc = aa_client.ActivityWatchClient("test")
     res = awc.query(query, timeperiods)[0]
     events = res["events"]
     print(len(events))

@@ -1,4 +1,4 @@
-from aw_core.config import load_config_toml
+from aa_core.config import load_config_toml
 
 default_config = """
 [server]
@@ -18,4 +18,4 @@ commit_interval = 5
 
 
 def load_config():
-    return load_config_toml("aw-client", default_config)
+    return load_config_toml("aa-client", default_config)

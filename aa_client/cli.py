@@ -6,10 +6,10 @@ from datetime import datetime, timedelta, timezone
 from typing import List, Optional
 
 import click
-from aw_core import Event
+from aa_core import Event
 from tabulate import tabulate
 
-import aw_client
+import aa_client
 
 from . import queries
 from .classes import default_classes
@@ -22,11 +22,11 @@ logger = logging.getLogger(__name__)
 
 
 class _Context:
-    client: aw_client.ActivityWatchClient
+    client: aa_client.ActivityWatchClient
 
 
 @click.group(
-    help="CLI utility for aw-client to aid in interacting with the ActivityWatch server"
+    help="CLI utility for aa-client to aid in interacting with the ActivityWatch server"
 )
 @click.option(
     "--host",
@@ -48,7 +48,7 @@ class _Context:
 @click.pass_context
 def main(ctx, testing: bool, verbose: bool, host: str, port: int):
     ctx.obj = _Context()
-    ctx.obj.client = aw_client.ActivityWatchClient(
+    ctx.obj.client = aa_client.ActivityWatchClient(
         host=host,
         port=port if port != 5600 else (5666 if testing else 5600),
         testing=testing,
@@ -148,8 +148,8 @@ def report(
     name: Optional[str] = None,
 ):
     logger.info(f"Querying between {start} and {stop}")
-    bid_window = f"aw-watcher-window_{hostname}"
-    bid_afk = f"aw-watcher-afk_{hostname}"
+    bid_window = f"aa-watcher-window_{hostname}"
+    bid_afk = f"aa-watcher-afk_{hostname}"
 
     if not start.tzinfo:
         start = start.astimezone()
@@ -234,8 +234,8 @@ def canonical(
     name: Optional[str] = None,
 ):
     logger.info(f"Querying between {start} and {stop}")
-    bid_window = f"aw-watcher-window_{hostname}"
-    bid_afk = f"aw-watcher-afk_{hostname}"
+    bid_window = f"aa-watcher-window_{hostname}"
+    bid_afk = f"aa-watcher-afk_{hostname}"
 
     if not start.tzinfo:
         start = start.astimezone()

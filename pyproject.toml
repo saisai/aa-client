@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "aw-client"
+name = "aa-client"
 version = "0.5.14"
 description = "Client library for ActivityWatch"
 authors = ["Erik Bjäreholt <erik@bjareho.lt>", "Johan Bjäreholt <johan@bjareho.lt>"]
@@ -9,15 +9,15 @@ homepage = "https://activitywatch.net/"
 repository = "https://github.com/ActivityWatch/aw-client/"
 documentation = "https://docs.activitywatch.net/"
 packages = [
-    { include = "aw_client" },
+    { include = "aa_client" },
 ]
 
 [tool.poetry.scripts]
-aw-client = "aw_client.cli:main"
+aa-client = "aa_client.cli:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-aw-core = "^0.5.16"
+aa-core = "^0.5.16"
 requests = "*"
 persist-queue = "*"
 click = "^8.0"
@@ -34,7 +34,7 @@ types-tabulate = "*"
 gspread = "*"  # used in examples
 
 [tool.mypy]
-files = ["aw_client", "tests", "examples"]
+files = ["aa_client", "tests", "examples"]
 ignore_missing_imports = true
 check_untyped_defs = true
 

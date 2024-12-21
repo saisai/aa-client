@@ -19,9 +19,9 @@ from typing import (
 
 import persistqueue
 import requests as req
-from aw_core.dirs import get_data_dir
-from aw_core.models import Event
-from aw_transform.heartbeats import heartbeat_merge
+from aa_core.dirs import get_data_dir
+from aa_core.models import Event
+from aa_transform.heartbeats import heartbeat_merge
 
 from .config import load_config
 from .singleinstance import SingleInstance
@@ -68,7 +68,7 @@ class ActivityWatchClient:
         protocol="http",
     ) -> None:
         """
-        A handy wrapper around the aw-server REST API. The recommended way of interacting with the server.
+        A handy wrapper around the aa-server REST API. The recommended way of interacting with the server.
 
         Can be used with a `with`-statement as an alternative to manually calling connect and disconnect in a try-finally clause.
 
@@ -221,8 +221,8 @@ class ActivityWatchClient:
         Args:
             bucket_id: The bucket_id of the bucket to send the heartbeat to
             event: The actual heartbeat event
-            pulsetime: The maximum amount of time in seconds since the last heartbeat to be merged with the previous heartbeat in aw-server
-            queued: Use the aw-client queue feature to queue events if client loses connection with the server
+            pulsetime: The maximum amount of time in seconds since the last heartbeat to be merged with the previous heartbeat in aa-server
+            queued: Use the aa-client queue feature to queue events if client loses connection with the server
             commit_interval: Override default pre-merge commit interval
 
         NOTE: This endpoint can use the failed requests retry queue.
@@ -415,7 +415,7 @@ class RequestQueue(threading.Thread):
         self._attempt_reconnect_interval = 10
 
         # Setup failed queues file
-        data_dir = get_data_dir("aw-client")
+        data_dir = get_data_dir("aa-client")
         queued_dir = os.path.join(data_dir, "queued")
         if not os.path.exists(queued_dir):
             os.makedirs(queued_dir)
@@ -459,7 +459,7 @@ class RequestQueue(threading.Thread):
             self._create_buckets()
             self.connected = True
             logger.info(
-                f"Connection to aw-server established by {self.client.client_name}"
+                f"Connection to aa-server established by {self.client.client_name}"
             )
         except req.RequestException:
             self.connected = False

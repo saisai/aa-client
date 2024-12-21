@@ -1,7 +1,7 @@
 """
 Default classes
 
-Taken from default classes in aw-webui
+Taken from default classes in aa-webui
 """
 
 import logging
@@ -13,7 +13,7 @@ from typing import (
     Tuple,
 )
 
-import aw_client
+import aa_client
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ default_classes: List[Tuple[CategoryId, CategorySpec]] = [
     ),
     (
         ["Work", "Programming", "ActivityWatch"],
-        {"type": "regex", "regex": "ActivityWatch|aw-", "ignore_case": True},
+        {"type": "regex", "regex": "ActivityWatch|aa-", "ignore_case": True},
     ),
     (["Work", "Image"], {"type": "regex", "regex": "Gimp|Inkscape"}),
     (["Work", "Video"], {"type": "regex", "regex": "Kdenlive"}),
@@ -72,7 +72,7 @@ def get_classes() -> List[Tuple[List[str], dict]]:
     """
     # NOTE: Always tries to fetch from prod server,
     #       which is potentially wrong if testing server is being used.
-    awc = aw_client.ActivityWatchClient(f"get-setting-{random.randint(0, 10000)}")
+    awc = aa_client.ActivityWatchClient(f"get-setting-{random.randint(0, 10000)}")
     try:
         classes = awc.get_setting("classes")
     except Exception:
