@@ -4,7 +4,7 @@ build:
 	poetry install
 
 test:
-	python -c "import aw_client"
+	python -c "import aa_client"
 	pytest -s -vv tests/test_requestqueue.py
 
 test-integration:
@@ -13,7 +13,7 @@ test-integration:
 test-examples:
 	cd examples; pytest -v *.py
 	cd examples; yes | python3 load_dataframe.py
-	cd examples; python3 working_hours.py 'activitywatch|aw-|github.com' fakedata
+	cd examples; python3 working_hours.py 'activitywatch|aa-|github.com' fakedata
 
 lint:
 	ruff check .
@@ -29,4 +29,4 @@ format:
 
 clean:
 	rm -rf build dist
-	rm -rf aw_client/__pycache__
+	rm -rf aa_client/__pycache__
